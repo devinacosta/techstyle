@@ -1,0 +1,24 @@
+---
+- hosts: servers
+  remote_user: candidate
+  become: yes
+  tasks:
+  - name: Copy Cronjob
+    copy:
+      dest: /usr/local/bin/tracing.sh
+      src: scripts/tracing.sh
+      mode: 0755
+  - name: Install Cronjob
+    cron:
+      name: "load"
+      minute: "*"
+      hour: "*"
+      job: "/usr/local/bin/tracing.sh"
+  - name: Mount NFS
+    mount:
+      fstype: nfs
+      opts: defaults
+      dump: 0
+      passno: 0
+      state: mounted
+      src: 10.200.1.5:/nfs/data
