@@ -14,12 +14,16 @@
       minute: "*"
       hour: "*"
       job: "/usr/local/bin/tracing.sh"
+  - name: Ensure /shareddir exists
+    file: 
+      path: /shareddir
+      state: directory
   - name: Mount NFS
     mount:
       fstype: nfs
       opts: defaults
-      dump: 0
-      passno: 0
-      state: mounted
-      path: /shareddir
-      src: 10.200.1.5:/nfs/data
+      dump: '0'
+      passno: '0'
+      state: mounted 
+      name: "/shareddir"
+      src: "192.168.19.212:/nfs/data"
