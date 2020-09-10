@@ -21,4 +21,5 @@
       dump: 0
       passno: 0
       state: mounted
+      path: /shareddir
       src: 10.200.1.5:/nfs/data
